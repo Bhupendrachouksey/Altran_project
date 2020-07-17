@@ -13,7 +13,7 @@ export class FootballMatchesComponent implements OnInit {
   totalMatches: number;
   isSuccess: boolean;
   matches: any[];
-  apiUrl = 'https://jsonmock.hackerrank.com/api/football_competitions?year=';
+  
 
   ngOnInit(): void {
     this.totalMatches = 0;
@@ -22,19 +22,19 @@ export class FootballMatchesComponent implements OnInit {
   }
 
   onSelectYear(year) {
+    let apiUrl = 'https://jsonmock.hackerrank.com/api/football_competitions?year=';
     let response;
     console.log('data is selected', year);
     this.selectedYear = year;
-    this.apiUrl = this.apiUrl + year;
-    let observable = this.getObservable(this.apiUrl);
+    apiUrl = apiUrl + year;
+    let observable = this.getObservable(apiUrl);
     observable.subscribe(data => { 
-      console.log(data);
       this.isSuccess = true;
+      console.log('data', data);
       response = data; 
       this.totalMatches = response.data.length;
       this.matches = response.data;
       console.log('matches', this.matches);
-      
       
       });
   
